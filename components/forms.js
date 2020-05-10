@@ -136,10 +136,7 @@ function progress(i) {
               style={{ width: `${i}%` }}
             />
           </div>
-          <div
-            iv
-            className="alert alert-dismissible alert-success mt-2 text-center"
-          >
+          <div className="alert alert-dismissible alert-success mt-2 text-center">
             <strong>Well done!</strong> You successfully recorded a audio
           </div>
         </div>

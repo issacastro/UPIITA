@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "es6-promise": "^4.2.8",
-    "googleapis": "^50.0.0",
+    "googleapis": "^39.2.0",
     "isomorphic-fetch": "^2.2.1",
     "next": "^9.3.6",
     "react": "^16.13.1",
