@@ -3,12 +3,11 @@ import Form from "../components/forms"
 const Index = (props) => {
   return (
     <Container page={props.page}>
-
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="card">
           <div className="card-header text-center">
-          <h1>Record Audio</h1>
+          <h2>Audios</h2>
           </div>
           <Form/>
           </div>

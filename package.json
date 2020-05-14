@@ -10,16 +10,22 @@
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/issacastro/UPIITA.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/issacastro/UPIITA/issues"
+  },
+  "homepage": "https://github.com/issacastro/UPIITA#readme",
   "dependencies": {
-    "es6-promise": "^4.2.8",
     "googleapis": "^39.2.0",
-    "isomorphic-fetch": "^2.2.1",
-    "next": "^9.3.6",
+    "next": "^9.4.0",
+    "node-fetch": "^2.6.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-promise-tracker": "^2.1.0"
+    "react-dom": "^16.13.1"
   }
 }

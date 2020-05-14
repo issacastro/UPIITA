@@ -7,7 +7,7 @@ const Navigation = ({ page }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <Link href="/">
-        <a className="navbar-brand">Appweb</a>
+        <a className="navbar-brand">UPIITA</a>
       </Link>
       <button
         className="navbar-toggler"
@@ -23,10 +23,10 @@ const Navigation = ({ page }) => {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <Link href="/">
-            <a className={`nav-item nav-link ${status[0]}`}>Home</a>
+            <a className={`nav-item nav-link ${status[0]}`}>App</a>
           </Link>
           <Link href="/about">
-            <a className={`nav-item nav-link ${status[1]}`}>About</a>
+            <a className={`nav-item nav-link ${status[1]}`}>Proyecto</a>
           </Link>
         </div>
       </div>

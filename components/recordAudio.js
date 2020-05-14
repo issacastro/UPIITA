@@ -18,15 +18,15 @@ const recordAudio = () => {
             const element = document.getElementById("player");
             var x = document.createElement("AUDIO");
             const audioBlob = new Blob(audioChunks, {
-              type: "audio/wav; codecs=MS_PCM",
+              type: 'audio/wav; codecs=0',
             });
             const audioUrl = URL.createObjectURL(audioBlob);
             x.setAttribute("id", "record");
             x.setAttribute("src", audioUrl);
             x.setAttribute("controls", "controls");
             element.appendChild(x);
-            console.log(audioUrl.URL);
-            resolve({ audioBlob, audioUrl });
+            resolve(audioBlob);
+
           });
 
           mediaRecorder.stop();

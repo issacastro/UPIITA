@@ -1,6 +1,10 @@
 import { useState } from "react";
-import ReactDOM from "react-dom";
 import recordAudio from "./recordAudio";
+import fetch from "node-fetch";
+import Bar from "./Bar";
+import ReactDOM from "react-dom";
+import Router from "next/router";
+var blob;
 const Form = () => {
   const button_style = {
     width: "50px",
@@ -11,9 +15,10 @@ const Form = () => {
   };
   const [data, setData] = useState({
     name: "",
+    gender: "Mujer",
     country: "México",
     old: "",
-    progress: "",
+    wav: [],
   });
 
   const handleChange = (e) => {
@@ -21,42 +26,92 @@ const Form = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      var file = blobToFile(blob);
+    } catch (error) {
+      const element = (
+        <div className="alert alert-dismissible alert-danger text-center">
+          <strong> ! Olvidaste grabar el audio ! 🥺 </strong>
+        </div>
+      );
+      ReactDOM.render(element, document.getElementById("progressBar"));
+      return false;
+    }
+    var form = new FormData();
+    form.append("file", file, `${data.name}.wav`);
+    form.append("name", data.name);
+    form.append("gender", data.gender);
+    form.append("country", data.country);
+    form.append("old", data.old);
+    fetch("http://localhost:5000/upload", {
+      mode: "no-cors",
+      method: "POST",
+      body: form,
+    }).then(async () => {
+      document.getElementById("formData").reset();
+      const element = (
+        <div className="p-4">
+          <div className="alert alert-dismissible alert-primary text-center">
+            <strong>! Gracias por tu audio ! 🤓 </strong>
+          </div>
+        </div>
+      );
+      ReactDOM.render(element, document.getElementById("progressBar"));
+      await timeout(4000);
+      window.scrollTo(0, 0);
+      Router.push("/about",undefined,{ shallow: true });
+    });
   };
   return (
-    <form className="card-body" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Name</label>
+  
+    <form id="formData" className="card-body"  onSubmit={handleSubmit}>
+      <div className="form-group" >
+        <label>Nombre</label>
         <input
           name="name"
           type="text"
           className="form-control"
-          placeholder="Enter a name"
+          placeholder="¿ Como te llamas ?"
           onChange={handleChange}
           required
         />
       </div>
       <div className="form-group">
-        <label>Country</label>
+        <label>Genero</label>
+        <select
+          name="gender"
+          type="text"
+          className="form-control"
+          onChange={handleChange}
+          required
+        >
+          <option>Mujer</option>
+          <option>Hombre</option>
+
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Pais</label>
         <select
           name="country"
           type="text"
           className="form-control"
-          placeholder="Enter a country"
           onChange={handleChange}
           required
         >
           <option>México</option>
           <option>Argentina</option>
           <option>Colombia</option>
+          <option>Otro</option>
         </select>
       </div>
       <div className="form-group">
-        <label>Years old</label>
+        <label>Edad</label>
         <input
           name="old"
-          type="text"
+          type="number"
           className="form-control"
-          placeholder="Enter years old"
+          placeholder="¿ Cuantos años tienes ?"
           onChange={handleChange}
           required
         />
@@ -64,20 +119,24 @@ const Form = () => {
       <div className="text-center">
         <button
           type="button"
-          className="btn btn-outline-danger"
+          className="btn btn-outline-danger mb-1"
           style={button_style}
           onClick={(e) => grabar()}
         >
           <i className="fa fa-microphone" />
         </button>
+        <p>
+          Cuando des click en el microfono se grabaran 10 segundos de tu voz,
+          por favor ten preparado lo que dirás y procura que no haya ruido{" "}
+        </p>
       </div>
 
       <div id="progressBar" className="text-center p-2"></div>
       <div id="player" className="text-center "></div>
 
-      <div className=" p-4">
-        <button type="submit" className="btn btn-primary btn-lg btn-block">
-          Send
+      <div className="">
+        <button type="submit" className="btn btn-primary btn-lg btn-block mt-4 p-4">
+        ¡ Enviar !
         </button>
       </div>
     </form>
@@ -93,56 +152,16 @@ async function grabar() {
   const recorder = await recordAudio();
   recorder.start();
   var i = 0;
-  progress(i);
-  setTimeout(async () => {
-    await recorder.stop();
-  }, 11000);
+  Bar(i);
+  await timeout(11000);
+  blob = await recorder.stop();
+}
+function timeout(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function progress(i) {
-  setTimeout(function () {
-    const element = (
-      <div>
-        <strong>Recording...</strong>
-        <div className="progress">
-          <div
-            id="progress"
-            className="progress-bar progress-bar-striped bg-success progress-bar-animated "
-            role="progressbar"
-            aria-valuenow={i * 1.1}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            style={{ width: `${i * 1.1}%` }}
-          />
-        </div>
-      </div>
-    );
-    ReactDOM.render(element, document.getElementById("progressBar"));
-    i++;
-    if (i < 100) {
-      progress(i);
-    }
-    if (i == 100) {
-      const element = (
-        <div>
-          <div className="progress">
-            <div
-              id="progress"
-              className="progress-bar progress-bar-striped bg-success  "
-              role="progressbar"
-              aria-valuenow={75}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              style={{ width: `${i}%` }}
-            />
-          </div>
-          <div className="alert alert-dismissible alert-success mt-2 text-center">
-            <strong>Well done!</strong> You successfully recorded a audio
-          </div>
-        </div>
-      );
-      ReactDOM.render(element, document.getElementById("progressBar"));
-    }
-  }, 100);
+function blobToFile(theBlob) {
+  theBlob.lastModifiedDate = new Date();
+  return theBlob;
 }
 export default Form;
