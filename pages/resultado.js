@@ -24,7 +24,7 @@ const Resultado = (props) => {
     </Container>
   );
 };
-Analisis.defaultProps = {
+Resultado.defaultProps = {
   page: "Resultado",
 };
 export default Resultado;
