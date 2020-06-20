@@ -4,8 +4,10 @@ import fetch from "node-fetch";
 import Bar from "./Bar";
 import ReactDOM from "react-dom";
 import Router from "next/router";
+import  { useRef } from 'react'
 var blob;
 const Form = () => {
+  const inputFile = useRef(null);
   const button_style = {
     width: "50px",
     height: "50px",
@@ -40,9 +42,6 @@ const Form = () => {
     var form = new FormData();
     form.append("file", file, `${data.name}.wav`);
     form.append("name", data.name);
-    form.append("gender", data.gender);
-    form.append("country", data.country);
-    form.append("old", data.old);
     fetch("https://upiita-api.herokuapp.com/upload", {
       mode: "no-cors",
       method: "POST",
@@ -59,84 +58,62 @@ const Form = () => {
       ReactDOM.render(element, document.getElementById("progressBar"));
       await timeout(4000);
       window.scrollTo(0, 0);
-      Router.push("/about",undefined,{ shallow: true });
+      Router.push("/about", undefined, { shallow: true });
     });
   };
   return (
-  
-    <form id="formData" className="card-body"  onSubmit={handleSubmit}>
-      <div className="form-group" >
+    <form id="formData" className="card-body" onSubmit={handleSubmit}>
+      <div className="form-group">
         <label>Nombre</label>
         <input
           name="name"
           type="text"
           className="form-control"
-          placeholder="¿ Como te llamas ?"
+          placeholder="Nombre de prueba"
           onChange={handleChange}
           required
         />
       </div>
-      <div className="form-group">
-        <label>Genero</label>
-        <select
-          name="gender"
-          type="text"
-          className="form-control"
-          onChange={handleChange}
-          required
-        >
-          <option>Mujer</option>
-          <option>Hombre</option>
+      <input type='file' id='file' ref={inputFile} style={{display: 'none'}}  accept="audio/wav" onInput={(e)=>procesar()}/>
+      <div className="row ml-4 mr-4">
+        <div className="text-center col-md-6">
+          <button
+            type="button"
+            className="btn btn-outline-danger mb-1"
+            style={button_style}
+            onClick={(e) => grabar()}
+          >
+            <i className="fa fa-microphone" />
+          </button>
+          <div className="p-1">Grabar</div>
+        </div>
 
-        </select>
-      </div>
-      <div className="form-group">
-        <label>Pais</label>
-        <select
-          name="country"
-          type="text"
-          className="form-control"
-          onChange={handleChange}
-          required
-        >
-          <option>México</option>
-          <option>Argentina</option>
-          <option>Colombia</option>
-          <option>Otro</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <label>Edad</label>
-        <input
-          name="old"
-          type="number"
-          className="form-control"
-          placeholder="¿ Cuantos años tienes ?"
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="text-center">
-        <button
-          type="button"
-          className="btn btn-outline-danger mb-1"
-          style={button_style}
-          onClick={(e) => grabar()}
-        >
-          <i className="fa fa-microphone" />
-        </button>
-        <p>
-          Cuando des click en el microfono se grabaran 10 segundos de tu voz,
-          por favor ten preparado lo que dirás y procura que no haya ruido{" "}
-        </p>
+        <div className="text-center col-md-6">
+          <button
+            type="button"
+            className="btn btn-outline-success mb-1"
+            style={button_style}
+            onClick={(e) => adjuntar(inputFile)}
+          >
+            <i className="fa fa-paperclip" />
+          </button>
+          <div className="p-1">Subir</div>
+        </div>
+        
       </div>
 
+      <div className="mr-4 ml-4 mt-2">
+      <small id="fileHelp" className="form-text text-muted">Puedes grabar un audio de 10 segundos del tema sugerido o subir un archivo wav que solo contenga una señal de voz con una frecuencia de muestreo de al menos 8 KHz.</small>
+      </div>
       <div id="progressBar" className="text-center p-2"></div>
       <div id="player" className="text-center "></div>
 
       <div className="">
-        <button type="submit" className="btn btn-primary btn-lg btn-block mt-4 p-4">
-        ¡ Enviar !
+        <button
+          type="submit"
+          className="btn btn-primary btn-lg btn-block mt-4 p-4"
+        >
+          ¡ Analizar !
         </button>
       </div>
     </form>
@@ -163,5 +140,24 @@ function timeout(ms) {
 function blobToFile(theBlob) {
   theBlob.lastModifiedDate = new Date();
   return theBlob;
+}
+function adjuntar(inputFile) {
+inputFile.current.click();
+}
+function procesar(){
+  const element = document.getElementById("player");
+  const record = document.getElementById("record");
+  try {
+    element.removeChild(record);
+  } catch (error) {}
+  var x = document.createElement("AUDIO");
+  x.setAttribute("id", "record");
+  x.setAttribute("controls", "controls");
+  element.appendChild(x);
+  var sound = document.getElementById('record');
+  sound.src = URL.createObjectURL(document.getElementById('file').files[0]);
+  sound.onend = function(e) {
+    URL.revokeObjectURL(this.src);
+  }
 }
 export default Form;

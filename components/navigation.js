@@ -2,7 +2,8 @@ import Link from "next/link";
 const Navigation = ({ page }) => {
   var status = ["", "", ""];
   if (page == "Index") status[0] = "active";
-  if (page == "About") status[1] = "active";
+  if (page == "App") status[1] = "active";
+  if (page == "Analisis") status[2] = "active";
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -23,11 +24,14 @@ const Navigation = ({ page }) => {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <Link href="/">
-            <a className={`nav-item nav-link ${status[0]}`}>App</a>
+            <a className={`nav-item nav-link ${status[0]}`}>Proyecto</a>
           </Link>
-          <Link href="/about">
-            <a className={`nav-item nav-link ${status[1]}`}>Proyecto</a>
+          <Link href="/app">
+            <a className={`nav-item nav-link ${status[1]}`}>App</a>
           </Link>
+          <Link href="/analisis">
+          <a className={`nav-item nav-link ${status[2]}`}>Analisis</a>
+        </Link>
         </div>
       </div>
     </nav>

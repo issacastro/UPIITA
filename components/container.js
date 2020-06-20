@@ -8,7 +8,7 @@ const Container = (props) => (
       <link
         rel="icon"
         type="image/png"
-        href="https://jsentamans.com/wp-content/uploads/2016/06/microphone-icon.png"
+        href="https://image.flaticon.com/icons/svg/2152/2152494.svg"
       ></link>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
       <link

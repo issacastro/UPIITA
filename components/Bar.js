@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom";
-const Bar = (i) => {
+const Bar = (i,message) => {
     setTimeout(function () {
       const element = (
         <div>
-          <strong>Grabando... 🎤 </strong>
+          <strong>{message}... 🎤 </strong>
           <div className="progress">
             <div
               id="progress"
@@ -20,7 +20,7 @@ const Bar = (i) => {
       ReactDOM.render(element, document.getElementById("progressBar"));
       i++;
       if (i < 100) {
-        Bar(i);
+        Bar(i,message);
       }
       if (i == 100) {
         const element = (
