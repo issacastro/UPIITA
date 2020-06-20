@@ -7,26 +7,32 @@ const Index = (props) => {
       <h3>Sistema de identificación de variedad del lenguaje español</h3>
       <br />
       <p>
-      En este proyecto se desarrollará un sistema que identifique automáticamente la variación fonética del
-      lenguaje español, permitiendo deducir la nacionalidad de hablantes pertenecientes a México,
-      Argentina y Colombia utilizando técnicas de procesamiento digital de señales, y redes neuronales
-      como técnica de clasificación de las características de voz. Se usará un corpus construido con archivos
-      de audio de países para entrenar al sistema.
-      La técnica mayormente utilizada para identificar a un autor analiza directamente de un texto cómo se
-      expresa dicho autor , esto implica que en algunas ocasiones se tenga que realizar una transcripción
-      audio a texto. Lo que se busca en este proyecto es que mediante las características fonéticas de las
-      señales de voz se logre esta identificación.
+        En este proyecto se desarrollará un sistema que identifique
+        automáticamente la variación fonética del lenguaje español, permitiendo
+        deducir la nacionalidad de hablantes pertenecientes a México, Argentina
+        y Colombia utilizando técnicas de procesamiento digital de señales, y
+        redes neuronales como técnica de clasificación de las características de
+        voz. Se usará un corpus construido con archivos de audio de países para
+        entrenar al sistema. La técnica mayormente utilizada para identificar a
+        un autor analiza directamente de un texto cómo se expresa dicho autor ,
+        esto implica que en algunas ocasiones se tenga que realizar una
+        transcripción audio a texto. Lo que se busca en este proyecto es que
+        mediante las características fonéticas de las señales de voz se logre
+        esta identificación.
       </p>
       <div className="text-center">
-        <img src="/Sistema.png" className="img-fluid" alt="Responsive image"></img>
+        <img
+          src="/Sistema.png"
+          className="img-fluid"
+          alt="Responsive image"
+        ></img>
       </div>
-      <br/>
+      <br />
+      <h5>Palabras claves:</h5>
       <p>
-        <strong>
-          <h5>Palabras clave:</h5> reconocimiento de voz, procesamiento digital
-          de señales, redes neuronales, variedad del lenguaje español, perfilado
-          de usuario.
-        </strong>
+         Reconocimiento de voz, procesamiento
+        digital de señales, redes neuronales, variedad del lenguaje español,
+        perfilado de usuario.
       </p>
       <h4>Objetivo general </h4>
       <p>
