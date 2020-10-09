@@ -43,7 +43,7 @@ const Form = () => {
     form.append("gender", data.gender);
     form.append("country", data.country);
     form.append("old", data.old);
-    fetch("http://localhost:5000/upload", {
+    fetch("https://upiita-api.herokuapp.com/upload", {
       mode: "no-cors",
       method: "POST",
       body: form,

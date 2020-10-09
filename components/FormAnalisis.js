@@ -110,7 +110,8 @@ const Form = () => {
 
       <div className="">
         <button
-          type="submit"
+          type="submit" 
+          disabled
           className="btn btn-primary btn-lg btn-block mt-4 p-4"
         >
           ¡ Analizar !
