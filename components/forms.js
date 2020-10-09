@@ -43,7 +43,7 @@ const Form = () => {
     form.append("gender", data.gender);
     form.append("country", data.country);
     form.append("old", data.old);
-    fetch("https://upiita-api.herokuapp.com/upload", {
+    fetch("http://localhost:5000/upload", {
       mode: "no-cors",
       method: "POST",
       body: form,
@@ -59,7 +59,7 @@ const Form = () => {
       ReactDOM.render(element, document.getElementById("progressBar"));
       await timeout(4000);
       window.scrollTo(0, 0);
-      Router.push("/about",undefined,{ shallow: true });
+      Router.push("/",undefined,{ shallow: true });
     });
   };
   return (
