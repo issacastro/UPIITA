@@ -43,7 +43,7 @@ const Form = () => {
     if(blobs.length == 0 || blobs.length<10){
       const element = (
         <div className="alert alert-dismissible alert-danger text-center">
-          <strong> ! Aun faltan  {2-count} audios ! 🥺 </strong>
+          <strong> ! Aun faltan  {10-count} audios ! 🥺 </strong>
         </div>
       );
     ReactDOM.render(element, document.getElementById("progressBar"));  
