@@ -91,7 +91,8 @@ const Bar = (i,message,count) => {
           
         );
         ReactDOM.render(element, document.getElementById("progressBar"));
-        ReactDOM.render(msg, document.getElementById("frase"));       
+        ReactDOM.render(msg, document.getElementById("frase"));  
+        document.getElementById("grabar").style.visibility = 'hidden';    
       }
     }, 40);
   }
