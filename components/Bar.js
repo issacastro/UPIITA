@@ -50,7 +50,7 @@ const Bar = (i,message,count) => {
               />
             </div>
             <div className="alert alert-dismissible alert-success mt-2 text-center">
-              <strong> ! Bien sigamos,vuelve a clickear al boton de recording para grabar el segundo audio ! </strong>
+              <strong> ! Bien sigamos,vuelve a clickear al boton de recording para grabar el siguiente audio ! </strong>
               <br/>
               🤠
             </div>
