@@ -73,10 +73,10 @@ const Form = () => {
           </div>
         </div>
       );
-      ReactDOM.render(element, document.getElementById("progressBar"));
-      await timeout(4000);
       blobs = [];
       count = 0;
+      ReactDOM.render(element, document.getElementById("progressBar"));
+      await timeout(4000);
       window.scrollTo(0, 0);
       Router.push("/",undefined,{ shallow: true });
     });
@@ -173,7 +173,6 @@ async function grabar(count) {
   const recorder = await recordAudio();
   recorder.start();
   var i = 0;
-  console.log(count);
   Bar(i,`Grabando audio #${count+1}`,count+1 );
   await timeout(4000);
   blob = await recorder.stop();
