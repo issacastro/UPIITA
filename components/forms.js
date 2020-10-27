@@ -146,7 +146,7 @@ const Form = () => {
           <i className="fa fa-microphone" />
         </button>
         <p>
-          Cuando des click en el microfono se empezara a grabar el audio, porfavor di la siguiente frase, no importa si no alcanzas a decir la frase, lo importante es tener tu acento 
+          Cuando des click en el microfono se empezara a grabar el audio, porfavor di la frase en color rojo, no importa si no alcanzas a decir la completa, lo importante es tener tu acento 
         </p>
       </div>
       <div id="frase" className="text-center">
