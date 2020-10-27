@@ -9,7 +9,8 @@ var prhases = [
   "Los aumentos en el costo de la energía afectarán a tu bolsillo.",
   "¿Por qué no se puede realizar el aborto?",
   "Introduzca su nombre de usuario y contraseña, y pulse el botón",
-  "Recopilación de firmas en contra de la extrema derecha de Austria."
+  "Recopilación de firmas en contra de la extrema derecha de Austria.",
+  "Ahora di lo que tu quieras (en serio jaja) 🔥"
 ]
 const Bar = (i,message,count) => {
     setTimeout(function () {
@@ -63,7 +64,7 @@ const Bar = (i,message,count) => {
         ReactDOM.render(element, document.getElementById("progressBar"));
         ReactDOM.render(msg, document.getElementById("frase"));
       };
-      if(count==10 && i==100){
+      if(count==11 && i==100){
         const element = (
           <div>
             <div className="progress">

@@ -17,7 +17,8 @@ var prhases = [
   "Los aumentos en el costo de la energía afectarán a tu bolsillo.",
   "¿Por qué no se puede realizar el aborto?",
   "Introduzca su nombre de usuario y contraseña, y pulse el botón",
-  "Recopilación de firmas en contra de la extrema derecha de Austria."
+  "Recopilación de firmas en contra de la extrema derecha de Austria.",
+  "Ahora di lo que tu quieras (en serio jaja) 🔥"
 ]
 const Form = () => {
   const button_style = {
@@ -40,10 +41,10 @@ const Form = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(blobs.length == 0 || blobs.length<10){
+    if(blobs.length == 0 || blobs.length<11){
       const element = (
         <div className="alert alert-dismissible alert-danger text-center">
-          <strong> ! Aun faltan  {10-count} audios ! 🥺 </strong>
+          <strong> ! Aun faltan  {11-count} audios ! 🥺 </strong>
         </div>
       );
     ReactDOM.render(element, document.getElementById("progressBar"));  
@@ -59,7 +60,7 @@ const Form = () => {
     form.append("gender", data.gender);
     form.append("country", data.country);
     form.append("old", data.old);
-    if(count==10)
+    if(count==11)
     fetch("https://upiita-api.herokuapp.com/upload", {
       mode: "no-cors",
       method: "POST",
