@@ -168,18 +168,14 @@ const Form = () => {
         >
           <i className="fa fa-microphone" />
         </button>
-        <p>
-          Cuando des click en el microfono se empezara a grabar el audio,
-          porfavor di la frase en color rojo, no importa si no alcanzas a decir
-          la completa, lo importante es tener tu acento
-        </p>
+        <br/>
+        <small className="form-text text-muted">
+          Cuando des click en el microfono se empezara a grabar el audio, porfavor di la frase en color rojo, no importa si no alcanzas a decir la completa, lo importante es tener tu acento
+        </small>
       </div>
+      <br/>
       <div id="frase" className="text-center">
-        <span>
-          <b>
-            <p style={{ color: "red" }}>{prhases[count]}</p>
-          </b>
-        </span>
+       <h5 class="alert-heading" style={{ color: "red" }}>{prhases[count]}</h5>
       </div>
 
       <div id="progressBar" className="text-center p-2"></div>

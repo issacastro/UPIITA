@@ -58,7 +58,7 @@ const Bar = (i,message,count) => {
           </div>
         );
         const  msg =(
-          <span ><b><p style={{color:"red"}}>{prhases[count]}</p></b></span>
+          <h5 class="alert-heading" style={{ color: "red" }}>{prhases[count]}</h5>
           
         );
         ReactDOM.render(element, document.getElementById("progressBar"));
@@ -87,7 +87,7 @@ const Bar = (i,message,count) => {
           </div>
         );
         const  msg =(
-          <span ><b><p style={{color:"red"}}>{prhases[count]}</p></b></span>
+          <h5 class="alert-heading" style={{ color: "red" }}>{prhases[count]}</h5>
           
         );
         ReactDOM.render(element, document.getElementById("progressBar"));
